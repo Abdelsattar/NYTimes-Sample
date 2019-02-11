@@ -2,12 +2,10 @@ package com.sattar.nytimessample.views;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.sattar.nytimessample.R;
 import com.sattar.nytimessample.models.articles.ResultsItem;
 import com.squareup.picasso.Picasso;
@@ -65,12 +63,10 @@ public class NewsDetailsActivity extends AppCompatActivity {
         txtUrl.setText(resultsItem.getUrl());
         txtTitle.setText(resultsItem.getTitle());
 
-        Log.e("result", new Gson().toJson(resultsItem));
         if (resultsItem != null && resultsItem.getMedia() != null
                 && !resultsItem.getMedia().isEmpty()) {
 
             try {
-                Log.e("Try","enter");
                 Picasso.get()
                         .load(resultsItem.getMedia().get(0).getMediaMetadata().get(0).getUrl())
                         .error(R.drawable.img_default)
@@ -78,7 +74,6 @@ public class NewsDetailsActivity extends AppCompatActivity {
                         .into(imgMedia);
 
             } catch (Exception e) {
-                Log.e("Catch","enter");
                 e.printStackTrace();
                 Picasso.get()
                         .load(R.drawable.img_default)

@@ -31,7 +31,6 @@ public class ArticleRepository {
         ).enqueue(new Callback<ArticleResponse>() {
             @Override
             public void onResponse(Call<ArticleResponse> call, Response<ArticleResponse> response) {
-                Log.e("onResponse", response.body().getResults().size() + "");
                 if (response.isSuccessful())
                     liveData.setValue(response.body());
                 else
