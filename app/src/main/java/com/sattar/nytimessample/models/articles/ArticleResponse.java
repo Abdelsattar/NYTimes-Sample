@@ -1,10 +1,13 @@
 package com.sattar.nytimessample.models.articles;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ArticleResponse{
+public class ArticleResponse implements Parcelable {
 
 	@SerializedName("copyright")
 	private String copyright;
@@ -21,6 +24,24 @@ public class ArticleResponse{
 	public ArticleResponse(String status) {
 		this.status = status;
 	}
+
+	protected ArticleResponse(Parcel in) {
+		copyright = in.readString();
+		numResults = in.readInt();
+		status = in.readString();
+	}
+
+	public static final Creator<ArticleResponse> CREATOR = new Creator<ArticleResponse>() {
+		@Override
+		public ArticleResponse createFromParcel(Parcel in) {
+			return new ArticleResponse(in);
+		}
+
+		@Override
+		public ArticleResponse[] newArray(int size) {
+			return new ArticleResponse[size];
+		}
+	};
 
 	public void setCopyright(String copyright){
 		this.copyright = copyright;
@@ -52,5 +73,18 @@ public class ArticleResponse{
 
 	public String getStatus(){
 		return status;
+	}
+
+	@Override
+	public int describeContents() {
+
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel parcel, int i) {
+		parcel.writeString(copyright);
+		parcel.writeInt(numResults);
+		parcel.writeString(status);
 	}
 }

@@ -1,0 +1,111 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:gravity="center_horizontal"
+    android:scrollbars="none"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/consImage"
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <ImageView
+                android:id="@+id/imgMedia"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_default"/>
+
+
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/dp_8"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_18"
+            />
+
+        <TextView
+            android:id="@+id/txtSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/consImage"
+            android:layout_margin="8dp"
+
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/txtAuthorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtSection"
+            android:layout_margin="8dp"
+
+            android:text="TextView"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtSection"
+            android:layout_margin="8dp"
+            android:layout_toEndOf="@id/txtAbstract"
+            android:text="TextView"
+            android:textColor="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/txtSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtAuthorName"
+            android:layout_margin="8dp"
+
+            android:text="TextView"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/txtAbstract"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtSource"
+            android:layout_margin="8dp"
+            android:text="TextView"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/txtKeyWords"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtSource"
+            android:layout_margin="8dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/txtUrl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtKeyWords"
+            android:layout_margin="8dp"
+            android:autoLink="web"
+            android:text="TextView"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+</ScrollView>

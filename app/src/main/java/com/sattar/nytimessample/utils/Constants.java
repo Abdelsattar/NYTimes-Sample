@@ -14,4 +14,6 @@ public class Constants {
 
     public static String API_OK_STATUS = "OK";
     public static String API_ERROR_STATUS = "ERROR";
+
+    public static String KEY_NEWS_DETAILS = "news_details";
 }

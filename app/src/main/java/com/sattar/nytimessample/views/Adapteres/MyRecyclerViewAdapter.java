@@ -20,8 +20,15 @@ import butterknife.ButterKnife;
  */
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.NewsViewHolder> {
 
+
     private List<ResultsItem> mData;
     private LayoutInflater mInflater;
+
+    // parent activity will implement this method to respond to click events
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
@@ -44,7 +51,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         holder.titleView.setText(article.getTitle());
         holder.sectionView.setText(article.getSection());
-        holder.authorNameView.setText(article.getSource());
+        holder.authorNameView.setText(article.getByline());
         holder.dateView.setText(article.getPublishedDate());
     }
 
@@ -59,12 +66,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         this.mClickListener = itemClickListener;
     }
 
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
 
-    class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class NewsViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.title_view)
         TextView titleView;
@@ -78,11 +81,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         public NewsViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mClickListener != null)
+                        mClickListener.onItemClick(view, getAdapterPosition());
+                }
+            });
         }
     }
 }

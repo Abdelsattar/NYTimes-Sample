@@ -2,6 +2,7 @@ package com.sattar.nytimessample.views;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.sattar.nytimessample.utils.Constants.API_OK_STATUS;
+import static com.sattar.nytimessample.utils.Constants.KEY_NEWS_DETAILS;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    void setupRecyclerView(List<ResultsItem> results) {
+    void setupRecyclerView(final List<ResultsItem> results) {
 
         rvArticles.setVisibility(View.VISIBLE);
         // set up the RecyclerView
@@ -75,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
         adapter.setClickListener(new MyRecyclerViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                startActivity(new Intent(MainActivity.this, NewsDetailsActivity.class)
+                        .putExtra(KEY_NEWS_DETAILS, results.get(position)));
             }
         });
         recyclerView.setAdapter(adapter);

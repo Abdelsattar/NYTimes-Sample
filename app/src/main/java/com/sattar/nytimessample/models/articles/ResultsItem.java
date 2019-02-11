@@ -1,210 +1,265 @@
 package com.sattar.nytimessample.models.articles;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ResultsItem{
+public class ResultsItem implements Parcelable {
 
-	@SerializedName("per_facet")
-	private Object perFacet;
+    @SerializedName("per_facet")
+    private Object perFacet;
 
-	@SerializedName("org_facet")
-	private Object orgFacet;
+    @SerializedName("org_facet")
+    private Object orgFacet;
 
-	@SerializedName("column")
-	private Object column;
+    @SerializedName("column")
+    private Object column;
 
-	@SerializedName("section")
-	private String section;
+    @SerializedName("section")
+    private String section;
 
-	@SerializedName("abstract")
-	private String jsonMemberAbstract;
+    @SerializedName("abstract")
+    private String abstractStr;
 
-	@SerializedName("source")
-	private String source;
+    @SerializedName("source")
+    private String source;
 
-	@SerializedName("asset_id")
-	private long assetId;
+    @SerializedName("asset_id")
+    private long assetId;
 
-	@SerializedName("media")
-	private List<MediaItem> media;
+    @SerializedName("media")
+    private List<MediaItem> media;
 
-	@SerializedName("type")
-	private String type;
+    @SerializedName("type")
+    private String type;
 
-	@SerializedName("title")
-	private String title;
+    @SerializedName("title")
+    private String title;
 
-	@SerializedName("des_facet")
-	private Object desFacet;
+    @SerializedName("des_facet")
+    private Object desFacet;
 
-	@SerializedName("url")
-	private String url;
+    @SerializedName("url")
+    private String url;
 
-	@SerializedName("adx_keywords")
-	private String adxKeywords;
+    @SerializedName("adx_keywords")
+    private String adxKeywords;
 
-	@SerializedName("geo_facet")
-	private Object geoFacet;
+    @SerializedName("geo_facet")
+    private Object geoFacet;
 
-	@SerializedName("id")
-	private long id;
+    @SerializedName("id")
+    private long id;
 
-	@SerializedName("byline")
-	private String byline;
+    @SerializedName("byline")
+    private String byline;
 
-	@SerializedName("published_date")
-	private String publishedDate;
+    @SerializedName("published_date")
+    private String publishedDate;
 
-	@SerializedName("views")
-	private int views;
+    @SerializedName("views")
+    private int views;
 
-	public void setPerFacet(List<String> perFacet){
-		this.perFacet = perFacet;
-	}
 
-	public Object getPerFacet() {
-		return perFacet;
-	}
+    protected ResultsItem(Parcel in) {
+        section = in.readString();
+        abstractStr = in.readString();
+        source = in.readString();
+        assetId = in.readLong();
+        media = in.createTypedArrayList(MediaItem.CREATOR);
+        type = in.readString();
+        title = in.readString();
+        url = in.readString();
+        adxKeywords = in.readString();
+        id = in.readLong();
+        byline = in.readString();
+        publishedDate = in.readString();
+        views = in.readInt();
+    }
 
-	public void setPerFacet(Object perFacet) {
-		this.perFacet = perFacet;
-	}
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(section);
+        dest.writeString(abstractStr);
+        dest.writeString(source);
+        dest.writeLong(assetId);
+        dest.writeTypedList(media);
+        dest.writeString(type);
+        dest.writeString(title);
+        dest.writeString(url);
+        dest.writeString(adxKeywords);
+        dest.writeLong(id);
+        dest.writeString(byline);
+        dest.writeString(publishedDate);
+        dest.writeInt(views);
+    }
 
-	public void setColumn(Object column){
-		this.column = column;
-	}
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-	public Object getColumn(){
-		return column;
-	}
+    public static final Creator<ResultsItem> CREATOR = new Creator<ResultsItem>() {
+        @Override
+        public ResultsItem createFromParcel(Parcel in) {
+            return new ResultsItem(in);
+        }
 
-	public void setSection(String section){
-		this.section = section;
-	}
+        @Override
+        public ResultsItem[] newArray(int size) {
+            return new ResultsItem[size];
+        }
+    };
 
-	public String getSection(){
-		return section;
-	}
+    public void setPerFacet(List<String> perFacet) {
+        this.perFacet = perFacet;
+    }
 
-	public void setJsonMemberAbstract(String jsonMemberAbstract){
-		this.jsonMemberAbstract = jsonMemberAbstract;
-	}
+    public Object getPerFacet() {
+        return perFacet;
+    }
 
-	public String getJsonMemberAbstract(){
-		return jsonMemberAbstract;
-	}
+    public void setPerFacet(Object perFacet) {
+        this.perFacet = perFacet;
+    }
 
-	public void setSource(String source){
-		this.source = source;
-	}
+    public void setColumn(Object column) {
+        this.column = column;
+    }
 
-	public String getSource(){
-		return source;
-	}
+    public Object getColumn() {
+        return column;
+    }
 
-	public void setAssetId(long assetId){
-		this.assetId = assetId;
-	}
+    public void setSection(String section) {
+        this.section = section;
+    }
 
-	public long getAssetId(){
-		return assetId;
-	}
+    public String getSection() {
+        return section;
+    }
 
-	public void setMedia(List<MediaItem> media){
-		this.media = media;
-	}
+    public String getAbstractStr() {
+        return abstractStr;
+    }
 
-	public List<MediaItem> getMedia(){
-		return media;
-	}
+    public void setAbstractStr(String abstractStr) {
+        this.abstractStr = abstractStr;
+    }
 
-	public void setType(String type){
-		this.type = type;
-	}
+    public void setSource(String source) {
+        this.source = source;
+    }
 
-	public String getType(){
-		return type;
-	}
+    public String getSource() {
+        return source;
+    }
 
-	public void setTitle(String title){
-		this.title = title;
-	}
+    public void setAssetId(long assetId) {
+        this.assetId = assetId;
+    }
 
-	public String getTitle(){
-		return title;
-	}
+    public long getAssetId() {
+        return assetId;
+    }
 
-	public Object getOrgFacet() {
-		return orgFacet;
-	}
+    public void setMedia(List<MediaItem> media) {
+        this.media = media;
+    }
 
-	public void setOrgFacet(Object orgFacet) {
-		this.orgFacet = orgFacet;
-	}
+    public List<MediaItem> getMedia() {
+        return media;
+    }
 
-	public Object getDesFacet() {
-		return desFacet;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setDesFacet(Object desFacet) {
-		this.desFacet = desFacet;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setUrl(String url){
-		this.url = url;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getUrl(){
-		return url;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setAdxKeywords(String adxKeywords){
-		this.adxKeywords = adxKeywords;
-	}
+    public Object getOrgFacet() {
+        return orgFacet;
+    }
 
-	public String getAdxKeywords(){
-		return adxKeywords;
-	}
+    public void setOrgFacet(Object orgFacet) {
+        this.orgFacet = orgFacet;
+    }
 
-	public Object getGeoFacet() {
-		return geoFacet;
-	}
+    public Object getDesFacet() {
+        return desFacet;
+    }
 
-	public void setGeoFacet(Object geoFacet) {
-		this.geoFacet = geoFacet;
-	}
+    public void setDesFacet(Object desFacet) {
+        this.desFacet = desFacet;
+    }
 
-	public void setId(long id){
-		this.id = id;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public long getId(){
-		return id;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public void setByline(String byline){
-		this.byline = byline;
-	}
+    public void setAdxKeywords(String adxKeywords) {
+        this.adxKeywords = adxKeywords;
+    }
 
-	public String getByline(){
-		return byline;
-	}
+    public String getAdxKeywords() {
+        return adxKeywords;
+    }
 
-	public void setPublishedDate(String publishedDate){
-		this.publishedDate = publishedDate;
-	}
+    public Object getGeoFacet() {
+        return geoFacet;
+    }
 
-	public String getPublishedDate(){
-		return publishedDate;
-	}
+    public void setGeoFacet(Object geoFacet) {
+        this.geoFacet = geoFacet;
+    }
 
-	public void setViews(int views){
-		this.views = views;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public int getViews(){
-		return views;
-	}
+    public long getId() {
+        return id;
+    }
+
+    public void setByline(String byline) {
+        this.byline = byline;
+    }
+
+    public String getByline() {
+        return byline;
+    }
+
+    public void setPublishedDate(String publishedDate) {
+        this.publishedDate = publishedDate;
+    }
+
+    public String getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
 }
