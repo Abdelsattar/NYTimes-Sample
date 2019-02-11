@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NYTimes sample</string>
+    <string name="txt_error">Error getting data</string>
 </resources>

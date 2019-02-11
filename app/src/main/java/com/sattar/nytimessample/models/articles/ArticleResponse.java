@@ -18,6 +18,10 @@ public class ArticleResponse{
 	@SerializedName("status")
 	private String status;
 
+	public ArticleResponse(String status) {
+		this.status = status;
+	}
+
 	public void setCopyright(String copyright){
 		this.copyright = copyright;
 	}
