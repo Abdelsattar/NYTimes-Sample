@@ -1,16 +1,16 @@
 package com.sattar.nytimessample.models.articles;
 
-import java.util.List;
-import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class ResultsItem{
 
 	@SerializedName("per_facet")
-	private List<String> perFacet;
+	private Object perFacet;
 
 	@SerializedName("org_facet")
-	private String orgFacet;
+	private Object orgFacet;
 
 	@SerializedName("column")
 	private Object column;
@@ -37,7 +37,7 @@ public class ResultsItem{
 	private String title;
 
 	@SerializedName("des_facet")
-	private List<String> desFacet;
+	private Object desFacet;
 
 	@SerializedName("url")
 	private String url;
@@ -46,7 +46,7 @@ public class ResultsItem{
 	private String adxKeywords;
 
 	@SerializedName("geo_facet")
-	private String geoFacet;
+	private Object geoFacet;
 
 	@SerializedName("id")
 	private long id;
@@ -64,16 +64,12 @@ public class ResultsItem{
 		this.perFacet = perFacet;
 	}
 
-	public List<String> getPerFacet(){
+	public Object getPerFacet() {
 		return perFacet;
 	}
 
-	public void setOrgFacet(String orgFacet){
-		this.orgFacet = orgFacet;
-	}
-
-	public String getOrgFacet(){
-		return orgFacet;
+	public void setPerFacet(Object perFacet) {
+		this.perFacet = perFacet;
 	}
 
 	public void setColumn(Object column){
@@ -140,12 +136,20 @@ public class ResultsItem{
 		return title;
 	}
 
-	public void setDesFacet(List<String> desFacet){
-		this.desFacet = desFacet;
+	public Object getOrgFacet() {
+		return orgFacet;
 	}
 
-	public List<String> getDesFacet(){
+	public void setOrgFacet(Object orgFacet) {
+		this.orgFacet = orgFacet;
+	}
+
+	public Object getDesFacet() {
 		return desFacet;
+	}
+
+	public void setDesFacet(Object desFacet) {
+		this.desFacet = desFacet;
 	}
 
 	public void setUrl(String url){
@@ -164,12 +168,12 @@ public class ResultsItem{
 		return adxKeywords;
 	}
 
-	public void setGeoFacet(String geoFacet){
-		this.geoFacet = geoFacet;
+	public Object getGeoFacet() {
+		return geoFacet;
 	}
 
-	public String getGeoFacet(){
-		return geoFacet;
+	public void setGeoFacet(Object geoFacet) {
+		this.geoFacet = geoFacet;
 	}
 
 	public void setId(long id){

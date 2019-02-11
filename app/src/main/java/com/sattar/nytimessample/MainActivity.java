@@ -21,6 +21,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        get();
     }
 
+    void get() {
+
+        ArticlesApiInterface articlesApiInterface = ApiClient.getClient().create
+                (ArticlesApiInterface.class);
+        articlesApiInterface.getMostViewed(
+                API_ALL_SECTION,
+                API_LAST_WEEK,
+                BuildConfig.ApiKey
+        ).enqueue(new Callback<ArticleResponse>() {
+            @Override
+            public void onResponse(Call<ArticleResponse> call, Response<ArticleResponse> response) {
+                Log.e("onResponse", response.body().getResults().size() + "");
+            }
+
+            @Override
+            public void onFailure(Call<ArticleResponse> call, Throwable t) {
+                Log.e("onFailure", t.getLocalizedMessage());
+
+            }
+        });
+    }
 }
