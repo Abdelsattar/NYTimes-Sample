@@ -9,9 +9,10 @@ import com.sattar.nytimessample.models.articles.ArticleResponse;
 import com.sattar.nytimessample.utils.ApiClient;
 import com.sattar.nytimessample.utils.ArticlesApiInterface;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created By Sattar 2/11/2019
@@ -24,25 +25,37 @@ public class ArticleRepository {
         final MutableLiveData<ArticleResponse> liveData = new MutableLiveData<>();
         ArticlesApiInterface articlesApiInterface = ApiClient.getClient().create
                 (ArticlesApiInterface.class);
-        articlesApiInterface.getMostViewed(
-                section,
-                period,
-                BuildConfig.ApiKey
-        ).enqueue(new Callback<ArticleResponse>() {
-            @Override
-            public void onResponse(Call<ArticleResponse> call, Response<ArticleResponse> response) {
-                if (response.isSuccessful())
-                    liveData.setValue(response.body());
-                else
-                    liveData.setValue(new ArticleResponse("ERROR"));
-            }
+        
+        articlesApiInterface
+                .getMostViewed(
+                        section,
+                        period,
+                        BuildConfig.ApiKey
+                ).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ArticleResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-            @Override
-            public void onFailure(Call<ArticleResponse> call, Throwable t) {
-                Log.e("onFailure", t.getLocalizedMessage());
-                liveData.setValue(new ArticleResponse("ERROR"));
-            }
-        });
+                    }
+
+                    @Override
+                    public void onNext(ArticleResponse articleResponse) {
+                        liveData.setValue(articleResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        liveData.setValue(new ArticleResponse("ERROR"));
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.i("Article", "Completed");
+
+                    }
+                });
+
 
         return liveData;
 

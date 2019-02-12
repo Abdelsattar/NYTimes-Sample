@@ -2,7 +2,7 @@ package com.sattar.nytimessample.utils;
 
 import com.sattar.nytimessample.models.articles.ArticleResponse;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -13,8 +13,15 @@ import retrofit2.http.Query;
 public interface ArticlesApiInterface {
 
 //    http://api.nytimes.com/svc/mostpopular/v2/
+//    @GET("mostviewed/{section}/{period}.json")
+//    Call<ArticleResponse> getMostViewed(
+//            @Path("section") String section,
+//            @Path("period") String period,
+//            @Query("api-key") String apiKey
+//    );
+
     @GET("mostviewed/{section}/{period}.json")
-    Call<ArticleResponse> getMostViewed(
+    Observable<ArticleResponse> getMostViewed(
             @Path("section") String section,
             @Path("period") String period,
             @Query("api-key") String apiKey

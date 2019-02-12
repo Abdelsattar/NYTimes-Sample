@@ -1,5 +1,6 @@
 package com.sattar.nytimessample.utils;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.sattar.nytimessample.BuildConfig;
 
 import retrofit2.Retrofit;
@@ -16,6 +17,7 @@ public class ApiClient {
         return retrofit != null ? retrofit : new Retrofit.Builder()
                 .baseUrl(BuildConfig.ApiBaseURL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 
