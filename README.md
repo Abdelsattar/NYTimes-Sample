@@ -12,6 +12,14 @@ tools and libs used
 - CardView
 - Picasso
 - LiveData
+- RX-Java
 
 ** Design patern used **
-MVVM 
+- MVVM 
+
+** how to install this app
+- download it 
+- improt it to android stuido 
+- have internet connection (will download dependcies)
+- connect a mobile via Usb with USB debug enabled
+- run it to your mobile 
